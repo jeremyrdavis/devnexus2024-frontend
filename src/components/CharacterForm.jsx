@@ -87,13 +87,6 @@ export default function CharacterForm() {
     setName(CharacterForm.name.value);
     setCharacter(characterName);
     setWorkflow(1);
-    alert(
-      name +
-        ", your Spirit Character is " +
-        characterName +
-        " and you are now at stage " +
-        workflow
-    );
   }
 
   // 2
@@ -218,8 +211,9 @@ export default function CharacterForm() {
       )}
       {workflow === 6 && (
         <form id="feedbackForm">
-          <input
-            type="text"
+          <textarea
+            cols="50"
+            rows="10"
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             placeholder="Enter your feedback here..."
