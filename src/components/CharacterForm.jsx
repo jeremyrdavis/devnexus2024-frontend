@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { WorkflowForm } from "./WorkflowForm.jsx";
 
 export default function CharacterForm() {
   const [workflow, setWorkflow] = useState(0);
@@ -184,56 +185,36 @@ export default function CharacterForm() {
         </form>
       )}
       {workflow === 2 && (
-        <form id="poemForm">
-          <div>
-            <p>{whoIsText}</p>
-          </div>
-          <button type="submit" onClick={handleSubmitLike}>
-            Yes
-          </button>
-          <button type="submit" onClick={handleSubmitDislike}>
-            No
-          </button>
-        </form>
+        <WorkflowForm
+          workflow={workflow}
+          text={whoIsText}
+          handleSubmitLike={handleSubmitLike}
+          handleSubmitDislike={handleSubmitDislike}
+        />
       )}
       {workflow === 3 && (
-        <form id="poemForm">
-          <div>
-            <p>{poemText}</p>
-          </div>
-          <button type="submit" onClick={handleSubmitLike}>
-            Yes
-          </button>
-          <button type="submit" onClick={handleSubmitDislike}>
-            No
-          </button>
-        </form>
+        <WorkflowForm
+          workflow={workflow}
+          text={poemText}
+          handleSubmitLike={handleSubmitLike}
+          handleSubmitDislike={handleSubmitDislike}
+        />
       )}
       {workflow === 4 && (
-        <form id="updatedPoemForm">
-          <div>
-            <p>{updatedPoemText}</p>
-          </div>
-          <button type="submit" onClick={handleSubmitLike}>
-            Yes
-          </button>
-          <button type="submit" onClick={handleSubmitDislike}>
-            No
-          </button>
-        </form>
+        <WorkflowForm
+          workflow={workflow}
+          text={updatedPoemText}
+          handleSubmitLike={handleSubmitLike}
+          handleSubmitDislike={handleSubmitDislike}
+        />
       )}
       {workflow === 5 && (
-        <form id="proseForm">
-          <div>
-            <p>{proseText}</p>
-          </div>
-          <button type="submit" onClick={handleSubmitLike}>
-            Yes
-          </button>
-          <button type="submit" onClick={handleSubmitDislike}>
-            No
-          </button>
-        </form>
+        <WorkflowForm
+          workflow={workflow}
+          text={proseText}
+          handleSubmitLike={handleSubmitLike}
+          handleSubmitDislike={handleSubmitDislike}
+        />
       )}
       {workflow === 6 && (
         <form id="feedbackForm">
