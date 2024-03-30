@@ -86,17 +86,18 @@ export default function CharacterForm() {
       headers: {
         "Content-Type" : "application/json",
       },
-      body: JSON.stringify(name),
+      body: name,
     }
     );
+
     const character = await response.json();
     console.log(character);
+    return character;
   }
   
   const retrieveCharacter = async (event) => {
     let postData = characterName;
 
-    assignCharacter();
 //    try {
 
       //fetch('http://localhost:8080/devnexus2024/assign')
@@ -111,11 +112,12 @@ export default function CharacterForm() {
   }
 
   // 0
-  function handleSubmitName(e) {
+  async function handleSubmitName(e) {
     e.preventDefault();
     setName(CharacterForm.name.value);
-    retrieveCharacter(name);
-    setCharacter(characterName);
+    let characterAssignment = await assignCharacter(name);
+//    retrieveCharacter(name);
+    setCharacter(characterAssignment.character);
     setWorkflow(1);
   }
 
