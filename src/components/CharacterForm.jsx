@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { WorkflowForm } from "./WorkflowForm.jsx";
+import axios from "axios";
 
 export default function CharacterForm() {
   const [workflow, setWorkflow] = useState(0);
@@ -77,14 +78,43 @@ export default function CharacterForm() {
                     \n \
                     Oh, Tarfful, your legend etched in the annals of time, your valor carried on the winds of change. In the verses of Ferlinghetti, your tale finds voice, a testament to the indomitable spirit of rebellion that shall endure for all eternity.";
 
-  function retrieveCharacter() {
-    setCharacter(characterName);
+  async function assignCharacter() {
+    const response = await fetch("http://localhost:8080/devnexus2024/assign", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify(name),
+    }
+    );
+    const character = await response.json();
+    console.log(character);
+  }
+  
+  const retrieveCharacter = async (event) => {
+    let postData = characterName;
+
+    assignCharacter();
+//    try {
+
+      //fetch('http://localhost:8080/devnexus2024/assign')
+      // const response = await axios.post('http://localhost:8080/devnexus2024/assign', postData);
+      // console.log('Response:', response);
+      // // Handle the response as needed
+      // } catch (error) {
+      //     console.error('Error posting data:', error);
+      //     // Handle the error as needed
+      // }
+      // return response.name;
   }
 
   // 0
   function handleSubmitName(e) {
     e.preventDefault();
     setName(CharacterForm.name.value);
+    retrieveCharacter(name);
     setCharacter(characterName);
     setWorkflow(1);
   }
