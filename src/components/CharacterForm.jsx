@@ -94,23 +94,25 @@ export default function CharacterForm() {
     console.log(character);
     return character;
   }
-  
-  const retrieveCharacter = async (event) => {
-    let postData = characterName;
 
-//    try {
+  async function callWhoIs(){
+    const response = await fetch("http://localhost:8080/devnexus2024/whoIs", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: name,
+    }
+    );
 
-      //fetch('http://localhost:8080/devnexus2024/assign')
-      // const response = await axios.post('http://localhost:8080/devnexus2024/assign', postData);
-      // console.log('Response:', response);
-      // // Handle the response as needed
-      // } catch (error) {
-      //     console.error('Error posting data:', error);
-      //     // Handle the error as needed
-      // }
-      // return response.name;
+    const character = await response.json();
+    console.log(character);
+    return character;
+
   }
-
+  
   // 0
   async function handleSubmitName(e) {
     e.preventDefault();
@@ -122,7 +124,7 @@ export default function CharacterForm() {
   }
 
   // 2
-  function handleSubmitWhoIs(e) {
+  async function handleSubmitWhoIs(e) {
     e.preventDefault();
     setWhoIs(whoIsText);
     setWorkflow(2);
